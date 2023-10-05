@@ -1,0 +1,12 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset"
+			]
+		}
+	]
+}
