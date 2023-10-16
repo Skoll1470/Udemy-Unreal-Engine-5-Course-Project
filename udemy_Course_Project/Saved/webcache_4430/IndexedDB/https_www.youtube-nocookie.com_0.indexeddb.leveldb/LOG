@@ -1,0 +1,6 @@
+2023/10/17-00:14:14.429 2f1c Creating DB C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb since it was missing.
+2023/10/17-00:14:14.444 2f1c Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/17-00:20:29.542 1c40 Level-0 table #5: started
+2023/10/17-00:20:29.560 1c40 Level-0 table #5: 1167 bytes OK
+2023/10/17-00:20:29.561 1c40 Delete type=0 #3
+2023/10/17-00:20:29.562 1c40 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
