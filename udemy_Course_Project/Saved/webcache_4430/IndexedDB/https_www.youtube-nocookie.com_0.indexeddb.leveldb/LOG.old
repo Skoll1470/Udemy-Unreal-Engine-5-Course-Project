@@ -1,0 +1,8 @@
+2023/10/27-14:35:26.255 4750 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/27-14:35:26.255 4750 Recovering log #4
+2023/10/27-14:35:26.256 4750 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000004.log 
+2023/10/27-14:36:02.196 3dbc Level-0 table #8: started
+2023/10/27-14:36:02.196 3dbc Level-0 table #8: 0 bytes OK
+2023/10/27-14:36:02.198 3dbc Delete type=0 #4
+2023/10/27-14:36:02.199 3dbc Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2023/10/27-14:36:02.199 3dbc Manual compaction at level-1 from (begin) .. (end); will stop at (end)
