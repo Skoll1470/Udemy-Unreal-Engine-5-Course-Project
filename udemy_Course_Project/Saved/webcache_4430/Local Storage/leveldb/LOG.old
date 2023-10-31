@@ -1,2 +1,6 @@
-2023/10/17-00:13:28.931 3f3c Creating DB C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb since it was missing.
-2023/10/17-00:13:29.019 3f3c Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2023/10/27-14:35:16.399 3348 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2023/10/27-14:35:16.414 3348 Recovering log #3
+2023/10/27-14:35:16.416 3348 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/000003.log 
+2023/10/27-14:39:49.675 37e0 Level-0 table #5: started
+2023/10/27-14:39:49.685 37e0 Level-0 table #5: 20588 bytes OK
+2023/10/27-14:39:49.687 37e0 Delete type=0 #3
