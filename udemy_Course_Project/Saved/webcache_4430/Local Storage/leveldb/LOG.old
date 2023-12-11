@@ -1,3 +1,6 @@
-2023/10/31-19:19:52.010 3f20 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2023/10/31-19:19:52.026 3f20 Recovering log #4
-2023/10/31-19:19:52.028 3f20 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/000004.log 
+2023/11/27-17:27:54.325 25cc Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2023/11/27-17:27:54.338 25cc Recovering log #4
+2023/11/27-17:27:54.340 25cc Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\Local Storage\leveldb/000004.log 
+2023/11/27-17:38:41.005 33b8 Level-0 table #8: started
+2023/11/27-17:38:41.008 33b8 Level-0 table #8: 18913 bytes OK
+2023/11/27-17:38:41.010 33b8 Delete type=0 #4

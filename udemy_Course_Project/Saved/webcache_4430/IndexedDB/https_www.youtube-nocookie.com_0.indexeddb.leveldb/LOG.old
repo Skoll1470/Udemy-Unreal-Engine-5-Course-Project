@@ -1,15 +1,8 @@
-2023/11/27-17:28:50.393 2704 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/11/27-17:28:50.394 2704 Recovering log #10
-2023/11/27-17:28:50.394 2704 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000010.log 
-2023/11/27-17:38:34.756 f24 Level-0 table #14: started
-2023/11/27-17:38:34.773 f24 Level-0 table #14: 547 bytes OK
-2023/11/27-17:38:34.774 f24 Delete type=0 #10
-2023/11/27-17:38:34.775 f24 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
-2023/11/27-17:38:34.776 f24 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x01\x02\x01\x16\x00y\x00t\x00-\x00i\x00d\x00b\x00-\x00t\x00e\x00s\x00t\x00-\x00d\x00o\x00-\x00n\x00o\x00t\x00-\x00u\x00s\x00e' @ 63 : 1
-2023/11/27-17:38:34.776 f24 Compacting 1@1 + 1@2 files
-2023/11/27-17:38:34.789 f24 Generated table #15@1: 17 keys, 515 bytes
-2023/11/27-17:38:34.789 f24 Compacted 1@1 + 1@2 files => 515 bytes
-2023/11/27-17:38:34.791 f24 compacted to: files[ 0 0 1 0 0 0 0 ]
-2023/11/27-17:38:34.791 f24 Delete type=2 #5
-2023/11/27-17:38:34.791 f24 Delete type=2 #14
-2023/11/27-17:38:34.792 f24 Manual compaction at level-1 from '\x00\x01\x01\x02\x01\x16\x00y\x00t\x00-\x00i\x00d\x00b\x00-\x00t\x00e\x00s\x00t\x00-\x00d\x00o\x00-\x00n\x00o\x00t\x00-\x00u\x00s\x00e' @ 63 : 1 .. (end); will stop at (end)
+2023/11/27-17:38:36.033 f24 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/11/27-17:38:36.034 f24 Recovering log #13
+2023/11/27-17:38:36.034 f24 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000013.log 
+2023/11/27-17:48:56.874 87c Level-0 table #18: started
+2023/11/27-17:48:56.874 87c Level-0 table #18: 0 bytes OK
+2023/11/27-17:48:56.876 87c Delete type=0 #13
+2023/11/27-17:48:56.876 87c Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2023/11/27-17:48:56.876 87c Manual compaction at level-1 from (begin) .. (end); will stop at (end)
