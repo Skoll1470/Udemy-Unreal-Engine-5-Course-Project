@@ -1,2 +1,5 @@
 BlackAlder/
 MedievalDungeon/
+*.db
+*.ipch
+*.pch

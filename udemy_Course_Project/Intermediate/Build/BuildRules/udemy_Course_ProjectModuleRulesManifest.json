@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\thoma\\OneDrive\\Bureau\\Work\\Udemy-Unreal-Engine-5-Course-Project\\udemy_Course_Project\\Source\\udemy_Course_Project\\udemy_Course_Project.Build.cs",
+		"C:\\Users\\thoma\\OneDrive\\Bureau\\Work\\Udemy-Unreal-Engine-5-Course-Project\\udemy_Course_Project\\Source\\udemy_Course_Project.Target.cs",
+		"C:\\Users\\thoma\\OneDrive\\Bureau\\Work\\Udemy-Unreal-Engine-5-Course-Project\\udemy_Course_Project\\Source\\udemy_Course_ProjectEditor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}

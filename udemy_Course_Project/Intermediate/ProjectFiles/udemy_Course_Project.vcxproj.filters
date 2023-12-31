@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\udemy_Course_Project.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\udemy_Course_Project.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\udemy_Course_ProjectEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\udemy_Course_Project">
+      <UniqueIdentifier>{23436AF9-A3BB-3307-93E7-38E9260D5DB7}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\udemy_Course_Project\udemy_Course_Project.Build.cs">
+      <Filter>Source\udemy_Course_Project</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\udemy_Course_Project.cpp">
+      <Filter>Source\udemy_Course_Project</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\udemy_Course_Project.h">
+      <Filter>Source\udemy_Course_Project</Filter>
+    </ClInclude>
+    <Filter Include="Source\udemy_Course_Project\Private">
+      <UniqueIdentifier>{3A321803-F7F3-383C-9E6F-0EF7D7354FDB}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\Private\Item.cpp">
+      <Filter>Source\udemy_Course_Project\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\udemy_Course_Project\Public">
+      <UniqueIdentifier>{D35F09FD-B0DF-3D92-9697-B82D0DD38A65}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Item.h">
+      <Filter>Source\udemy_Course_Project\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
