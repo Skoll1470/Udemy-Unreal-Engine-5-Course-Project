@@ -7,7 +7,8 @@
         "Includes": [
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\udemy_course_project\\definitions.udemy_course_project.h",
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\item.h",
-            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\item.generated.h"
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\item.generated.h",
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\debugmacros.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

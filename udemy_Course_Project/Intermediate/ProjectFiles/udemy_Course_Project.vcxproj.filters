@@ -51,4 +51,9 @@
       <Filter>Source\udemy_Course_Project\Public</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\DebugMacros.h">
+      <Filter>Source\udemy_Course_Project</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

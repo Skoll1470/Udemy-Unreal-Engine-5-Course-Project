@@ -2,6 +2,7 @@
 
 
 #include "Item.h"
+#include "udemy_Course_Project/DebugMacros.h"
 
 // Sets default values
 AItem::AItem()
@@ -16,13 +17,18 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("Cpp Begin Play Called !"));
+	UWorld* World = GetWorld();
+	FVector vectLocation = GetActorLocation();
+	FVector vectForward = GetActorForwardVector();
+	DRAW_SPHERE(vectLocation, FColor::Cyan);
+	//DRAW_LINE(vectLocation, vectLocation + vectForward * 100.f);
+	//DRAW_POINT(vectLocation + vectForward * 100.f);
+	DRAW_VECTOR(vectLocation, vectLocation + vectForward * 100.f, FColor::Red);
 }
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
