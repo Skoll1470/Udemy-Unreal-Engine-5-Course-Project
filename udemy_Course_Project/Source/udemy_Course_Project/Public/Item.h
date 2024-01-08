@@ -22,4 +22,36 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//The amplitude used in TransformedSin and TransformedCos
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sin and Cos Parameters");
+	float m_fAmplitude = 1.f;
+
+	//The time constant used in TransformedSin and TransformedCos
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sin and Cos Parameters");
+	float m_fTimeConstant = 5.f;
+
+	//The transformed Sin function
+	UFUNCTION(BlueprintPure)
+	float fTransformedSin(float in_fValue);
+
+	//The transformed Cos function
+	UFUNCTION(BlueprintPure)
+	float fTransformedCos(float in_fValue);
+
+	template<typename T>
+	T templateAverage(T in_templateFirst, T in_templateSecond);
+
+private:
+	//The time since Item has been loaded
+	UPROPERTY(VisibleAnywhere, BlueprintreadOnly, meta = (AllowPrivateAccess = "true"));
+	float m_fRunningTime = 0.f;
+
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* StaticMeshComponent;
 };
+
+template<typename T>
+inline T AItem::templateAverage(T in_templateFirst, T in_templateSecond)
+{
+	return (in_templateFirst + in_templateSecond) / 2;
+}
