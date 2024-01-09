@@ -47,7 +47,7 @@ private:
 	float m_fRunningTime = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* StaticMeshComponent;
+	UStaticMeshComponent* StaticMeshComponent = nullptr;
 };
 
 template<typename T>

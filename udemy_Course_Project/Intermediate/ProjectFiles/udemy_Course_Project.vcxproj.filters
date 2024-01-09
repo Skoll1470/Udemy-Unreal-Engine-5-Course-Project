@@ -46,12 +46,18 @@
     <Filter Include="Source\udemy_Course_Project\Private">
       <UniqueIdentifier>{3A321803-F7F3-383C-9E6F-0EF7D7354FDB}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\Private\Bird.cpp">
+      <Filter>Source\udemy_Course_Project\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\udemy_Course_Project\Private\Item.cpp">
       <Filter>Source\udemy_Course_Project\Private</Filter>
     </ClCompile>
     <Filter Include="Source\udemy_Course_Project\Public">
       <UniqueIdentifier>{D35F09FD-B0DF-3D92-9697-B82D0DD38A65}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Bird.h">
+      <Filter>Source\udemy_Course_Project\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Item.h">
       <Filter>Source\udemy_Course_Project\Public</Filter>
     </ClInclude>
