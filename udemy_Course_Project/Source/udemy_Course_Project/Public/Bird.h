@@ -8,6 +8,8 @@
 
 class UCapsuleComponent;
 class USkeletalMeshComponent;
+class USpringArmComponent;
+class UCameraComponent;
 
 UCLASS()
 class UDEMY_COURSE_PROJECT_API ABird : public APawn
@@ -26,7 +28,19 @@ public:
 
 protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;	
+	virtual void BeginPlay() override;
+
+	//Callback function to move in the forward direction
+	void MoveForward(float in_fValue);
+
+	//Callback function to move to the side
+	void MoveSide(float in_fValue);
+
+	//Callback function to rotate the camera in the X Axis
+	void Turn(float in_fValue);
+	
+	//Callback function to rotate the camera in the Y Axis
+	void LookUp(float in_fValue);
 
 private:
 	//Capsule Component
@@ -37,4 +51,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* m_SkeletalMeshComponent = nullptr;
 
+	//Spring Arm Component
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* m_SpringArmComponent = nullptr;
+
+	//Camera Component
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* m_CameraComponent = nullptr;
 };

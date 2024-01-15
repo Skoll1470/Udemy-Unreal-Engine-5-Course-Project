@@ -4,6 +4,8 @@
 #include "Bird.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ABird::ABird()
@@ -17,6 +19,17 @@ ABird::ABird()
 
 	m_SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
 	m_SkeletalMeshComponent->SetupAttachment(GetRootComponent());
+
+	m_SpringArmComponent = CreateOptionalDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	m_SpringArmComponent->SetupAttachment(GetRootComponent());
+	m_SpringArmComponent->TargetArmLength = 300.f;
+
+	m_CameraComponent = CreateOptionalDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	m_CameraComponent->SetupAttachment(m_SpringArmComponent);
+
+	AutoPossessPlayer = EAutoReceiveInput::Player0;
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationPitch = true;
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +37,40 @@ void ABird::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ABird::MoveForward(float in_fValue)
+{
+	if (Controller && (in_fValue != 0.f))
+	{
+		FVector vectForward = GetActorForwardVector();
+		AddMovementInput(vectForward, in_fValue);
+	}
+}
+
+void ABird::MoveSide(float in_fValue)
+{
+	if (Controller && (in_fValue != 0.f))
+	{
+		FVector vectRight = GetActorRightVector();
+		AddMovementInput(vectRight, in_fValue);
+	}
+}
+
+void ABird::Turn(float in_fValue)
+{
+	if (Controller && (in_fValue != 0.f))
+	{
+		AddControllerYawInput(in_fValue);
+	}
+}
+
+void ABird::LookUp(float in_fValue)
+{
+	if (Controller && (in_fValue != 0.f))
+	{
+		AddControllerPitchInput(in_fValue);
+	}
 }
 
 // Called every frame
@@ -38,5 +85,9 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ABird::MoveForward);
+	PlayerInputComponent->BindAxis(FName("Turn"), this, &ABird::Turn);
+	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ABird::LookUp);
+	PlayerInputComponent->BindAxis(FName("MoveSide"), this, &ABird::MoveSide);
 }
 
