@@ -55,6 +55,9 @@
     <ClCompile Include="..\..\Source\udemy_Course_Project\Private\MainCharacter.cpp">
       <Filter>Source\udemy_Course_Project\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\Private\MainCharacterAnimInstance.cpp">
+      <Filter>Source\udemy_Course_Project\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\udemy_Course_Project\Public">
       <UniqueIdentifier>{D35F09FD-B0DF-3D92-9697-B82D0DD38A65}</UniqueIdentifier>
     </Filter>
@@ -65,6 +68,9 @@
       <Filter>Source\udemy_Course_Project\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\MainCharacter.h">
+      <Filter>Source\udemy_Course_Project\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\Public\MainCharacterAnimInstance.h">
       <Filter>Source\udemy_Course_Project\Public</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,66 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "MainCharacterAnimInstance.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#ifdef UDEMY_COURSE_PROJECT_MainCharacterAnimInstance_generated_h
+#error "MainCharacterAnimInstance.generated.h already included, missing '#pragma once' in MainCharacterAnimInstance.h"
+#endif
+#define UDEMY_COURSE_PROJECT_MainCharacterAnimInstance_generated_h
+
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_SPARSE_DATA
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_ACCESSORS
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUMainCharacterAnimInstance(); \
+	friend struct Z_Construct_UClass_UMainCharacterAnimInstance_Statics; \
+public: \
+	DECLARE_CLASS(UMainCharacterAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/udemy_Course_Project"), NO_API) \
+	DECLARE_SERIALIZER(UMainCharacterAnimInstance)
+
+
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UMainCharacterAnimInstance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UMainCharacterAnimInstance(UMainCharacterAnimInstance&&); \
+	NO_API UMainCharacterAnimInstance(const UMainCharacterAnimInstance&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UMainCharacterAnimInstance); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UMainCharacterAnimInstance); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UMainCharacterAnimInstance) \
+	NO_API virtual ~UMainCharacterAnimInstance();
+
+
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_15_PROLOG
+#define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_SPARSE_DATA \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_ACCESSORS \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h_18_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> UDEMY_COURSE_PROJECT_API UClass* StaticClass<class UMainCharacterAnimInstance>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacterAnimInstance_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

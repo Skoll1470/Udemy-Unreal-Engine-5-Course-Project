@@ -27,11 +27,24 @@ AMainCharacter::AMainCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 }
 
+void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad)
+{
+	if (in_NotifyName.ToString() == "Dodge")
+	{
+		m_bIsRolling = false;
+	}
+}
+
 // Called when the game starts or when spawned
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UAnimInstance* pAnimInst = GetMesh()->GetAnimInstance();
+	if (pAnimInst)
+	{
+		pAnimInst->OnPlayMontageNotifyBegin.AddDynamic(this, &AMainCharacter::HandleOnMontageNotifyBegin);
+	}
 }
 
 void AMainCharacter::MoveForward(float in_fValue)
@@ -72,6 +85,24 @@ void AMainCharacter::LookUp(float in_fValue)
 	}
 }
 
+void AMainCharacter::Roll()
+{
+	if (!GetCharacterMovement()->IsFalling() && !m_bIsRolling)
+	{
+		UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+		if (pAnimInstance)
+		{
+			m_bIsRolling = true;
+			pAnimInstance->Montage_Play(m_pRollMontage);
+		}
+	}
+}
+
+bool AMainCharacter::GetIsRolling()
+{
+	return m_bIsRolling;
+}
+
 // Called every frame
 void AMainCharacter::Tick(float DeltaTime)
 {
@@ -88,5 +119,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis(FName("Turn"), this, &AMainCharacter::Turn);
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &AMainCharacter::LookUp);
 	PlayerInputComponent->BindAxis(FName("MoveSide"), this, &AMainCharacter::MoveSide);
+
+	PlayerInputComponent->BindAction(FName("Roll"), IE_Pressed, this, &AMainCharacter::Roll);
+	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 }
+
 

@@ -24,7 +24,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION()
+	void HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad);
+
 protected:
+	//Rolling Animation Montage
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+	UAnimMontage* m_pRollMontage = nullptr;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;	
 
@@ -40,6 +47,12 @@ protected:
 	//Callback function to rotate the camera in the Y Axis
 	void LookUp(float in_fValue);
 
+	void Roll();
+
+	//Getter for m_bIsRolling
+	UFUNCTION(BlueprintCallable)
+	bool GetIsRolling();
+
 private:
 	//Spring Arm Component
 	UPROPERTY(VisibleAnywhere)
@@ -48,5 +61,8 @@ private:
 	//Camera Component
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* m_CameraComponent = nullptr;
+
+	//Boolean indicating if the Main Character is Rolling
+	bool m_bIsRolling = false;
 
 };
