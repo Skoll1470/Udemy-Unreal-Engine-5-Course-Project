@@ -1,8 +1,15 @@
-2023/12/12-16:29:34.595 4be0 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/12/12-16:29:34.595 4be0 Recovering log #20
-2023/12/12-16:29:34.595 4be0 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000020.log 
-2023/12/12-16:32:14.257 b68 Level-0 table #24: started
-2023/12/12-16:32:14.257 b68 Level-0 table #24: 0 bytes OK
-2023/12/12-16:32:14.259 b68 Delete type=0 #20
-2023/12/12-16:32:14.260 b68 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
-2023/12/12-16:32:14.260 b68 Manual compaction at level-1 from (begin) .. (end); will stop at (end)
+2024/01/29-15:11:44.475 1b54 Reusing MANIFEST C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/01/29-15:11:44.475 1b54 Recovering log #23
+2024/01/29-15:11:44.475 1b54 Reusing old log C:/Users/thoma/OneDrive/Bureau/Work/Udemy-Unreal-Engine-5-Course-Project/udemy_Course_Project/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000023.log 
+2024/01/29-15:13:20.664 2064 Level-0 table #27: started
+2024/01/29-15:13:20.671 2064 Level-0 table #27: 547 bytes OK
+2024/01/29-15:13:20.673 2064 Delete type=0 #23
+2024/01/29-15:13:20.674 2064 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2024/01/29-15:13:20.674 2064 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x01\x02\x01\x16\x00y\x00t\x00-\x00i\x00d\x00b\x00-\x00t\x00e\x00s\x00t\x00-\x00d\x00o\x00-\x00n\x00o\x00t\x00-\x00u\x00s\x00e' @ 77 : 1
+2024/01/29-15:13:20.674 2064 Compacting 1@1 + 1@2 files
+2024/01/29-15:13:20.676 2064 Generated table #28@1: 17 keys, 515 bytes
+2024/01/29-15:13:20.676 2064 Compacted 1@1 + 1@2 files => 515 bytes
+2024/01/29-15:13:20.677 2064 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/01/29-15:13:20.677 2064 Delete type=2 #15
+2024/01/29-15:13:20.677 2064 Delete type=2 #27
+2024/01/29-15:13:20.678 2064 Manual compaction at level-1 from '\x00\x01\x01\x02\x01\x16\x00y\x00t\x00-\x00i\x00d\x00b\x00-\x00t\x00e\x00s\x00t\x00-\x00d\x00o\x00-\x00n\x00o\x00t\x00-\x00u\x00s\x00e' @ 77 : 1 .. (end); will stop at (end)

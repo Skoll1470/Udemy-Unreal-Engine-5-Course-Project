@@ -8,7 +8,11 @@
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\udemy_course_project\\definitions.udemy_course_project.h",
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\item.h",
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\item.generated.h",
-            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\debugmacros.h"
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\debugmacros.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
