@@ -5,6 +5,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Item.h"
+#include "Weapon.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -31,7 +33,30 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 {
 	if (in_NotifyName.ToString() == "Dodge")
 	{
-		m_bIsRolling = false;
+		m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
+	}
+	else if (in_NotifyName.ToString() == "Attacked")
+	{
+		m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
+		if (m_intComboCounter < 6)
+		{
+			GetWorldTimerManager().SetTimer(m_THComboTimer, this, &AMainCharacter::ResetCombo, 2.0f, false);
+		}
+		else
+		{
+			m_intComboCounter = 0;
+		}
+	}
+	else if (in_NotifyName.ToString() == "Attach")
+	{
+		if (m_pEquippedWeapon)
+		{
+			m_pEquippedWeapon->Equip(GetMesh(), FName("spineSocket"));
+		}
+	}
+	else if (in_NotifyName.ToString() == "UnequippingEnd")
+	{
+		m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
 	}
 }
 
@@ -51,6 +76,14 @@ void AMainCharacter::MoveForward(float in_fValue)
 {
 	if (Controller && (in_fValue != 0.f))
 	{
+		if (m_enumState != EMainCharacterStates::EMCS_Unoccpuied)
+		{
+			in_fValue *= 0.1f;
+		}
+		else if (!m_bIsEquipped)
+		{
+			in_fValue *= 1.2;
+		}
 		const FRotator cControlRotation = GetControlRotation();
 		const FRotator cYawRotation(0.f, cControlRotation.Yaw, 0.f);
 		const FVector cvectDirection = FRotationMatrix(cYawRotation).GetUnitAxis(EAxis::X);
@@ -62,6 +95,14 @@ void AMainCharacter::MoveSide(float in_fValue)
 {
 	if (Controller && (in_fValue != 0.f))
 	{
+		if (m_enumState != EMainCharacterStates::EMCS_Unoccpuied)
+		{
+			in_fValue *= 0.1f;
+		}
+		else if(!m_bIsEquipped)
+		{
+			in_fValue *= 1.2;
+		}
 		const FRotator cControlRotation = GetControlRotation();
 		const FRotator cYawRotation(0.f, cControlRotation.Yaw, 0.f);
 		const FVector cvectDirection = FRotationMatrix(cYawRotation).GetUnitAxis(EAxis::Y);
@@ -87,20 +128,93 @@ void AMainCharacter::LookUp(float in_fValue)
 
 void AMainCharacter::Roll()
 {
-	if (!GetCharacterMovement()->IsFalling() && !m_bIsRolling)
+	if (!GetCharacterMovement()->IsFalling() && m_enumState == EMainCharacterStates::EMCS_Unoccpuied)
 	{
 		UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
-		if (pAnimInstance)
+		if (pAnimInstance && m_pRollMontage)
 		{
-			m_bIsRolling = true;
+			m_enumState = EMainCharacterStates::EMCS_Rolling;
 			pAnimInstance->Montage_Play(m_pRollMontage);
 		}
 	}
 }
 
-bool AMainCharacter::GetIsRolling()
+void AMainCharacter::Interaction()
 {
-	return m_bIsRolling;
+	if (!m_pEquippedWeapon && m_enumState == EMainCharacterStates::EMCS_Unoccpuied)
+	{
+		AWeapon* OverlappingWeapon = Cast<AWeapon>(m_pOverlappingItem);
+		if (OverlappingWeapon)
+		{
+			OverlappingWeapon->Equip(GetMesh(), FName("hand_rSocket"));
+			m_pEquippedWeapon = OverlappingWeapon;
+			m_pOverlappingItem = nullptr;
+			m_bIsEquipped = true;
+		}
+	}
+
+	else
+	{
+		if (!GetCharacterMovement()->IsFalling() && m_enumState == EMainCharacterStates::EMCS_Unoccpuied)
+		{
+			if (!m_bIsEquipped && m_pEquippedWeapon)
+			{
+				m_pEquippedWeapon->Equip(GetMesh(), FName("hand_rSocket"));
+				m_bIsEquipped = true;
+			}
+			m_intComboCounter++;
+			UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+			if (pAnimInstance && m_pAttackMontage)
+			{
+				m_enumState = EMainCharacterStates::EMCS_Attacking;
+				pAnimInstance->Montage_Play(m_pAttackMontage);
+				FName MontageSectionName = FName();
+				switch (m_intComboCounter)
+				{
+				case 1 :
+					MontageSectionName = FName("Combo1");
+					break;
+				case 2:
+					MontageSectionName = FName("Combo1-1");
+					break;
+				case 3:
+					MontageSectionName = FName("Combo2");
+					break;
+				case 4:
+					MontageSectionName = FName("Combo3");
+					break;
+				case 5:
+					MontageSectionName = FName("Combo4");
+					break;
+				case 6:
+					MontageSectionName = FName("Combo5");
+					break;
+				}
+				pAnimInstance->Montage_JumpToSection(MontageSectionName, m_pAttackMontage);
+			}
+		}
+	}
+}
+
+void AMainCharacter::Defend()
+{
+	if (m_bIsEquipped && m_enumState == EMainCharacterStates::EMCS_Unoccpuied)
+	{
+		UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+		if (pAnimInstance && m_pEquipMontage)
+		{
+			m_bIsEquipped = false;
+			pAnimInstance->Montage_Play(m_pEquipMontage);
+			pAnimInstance->Montage_JumpToSection(FName("Unequip"), m_pEquipMontage);
+			m_enumState = EMainCharacterStates::EMC_Unequipping;
+		}
+	}
+}
+
+void AMainCharacter::ResetCombo()
+{
+	m_intComboCounter = 0;
+	GetWorldTimerManager().ClearTimer(m_THComboTimer);
 }
 
 // Called every frame
@@ -121,6 +235,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis(FName("MoveSide"), this, &AMainCharacter::MoveSide);
 
 	PlayerInputComponent->BindAction(FName("Roll"), IE_Pressed, this, &AMainCharacter::Roll);
+	PlayerInputComponent->BindAction(FName("Interact"), IE_Pressed, this, &AMainCharacter::Interaction);
+	PlayerInputComponent->BindAction(FName("Shield"), IE_Pressed, this, &AMainCharacter::Defend);
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 }
 

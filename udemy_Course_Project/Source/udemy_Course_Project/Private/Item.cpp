@@ -4,6 +4,7 @@
 #include "Item.h"
 #include "udemy_Course_Project/DebugMacros.h"
 #include "Components/SphereComponent.h"
+#include "MainCharacter.h"
 
 // Sets default values
 AItem::AItem()
@@ -46,19 +47,19 @@ void AItem::OnSphereOverlap(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
-	const FString strOtherActorName = FString("Begin overlap from : ") + OtherActor->GetName();
-	if (GEngine)
+	AMainCharacter* MainCharacter = Cast<AMainCharacter>(OtherActor);
+	if (MainCharacter)
 	{
-		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, strOtherActorName);
+		MainCharacter->SetOverlappingItem(this);
 	}
 }
 
 void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	const FString strOtherActorName = FString("End overlap from : ") + OtherActor->GetName();
-	if (GEngine)
+	AMainCharacter* MainCharacter = Cast<AMainCharacter>(OtherActor);
+	if (MainCharacter)
 	{
-		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, strOtherActorName);
+		MainCharacter->SetOverlappingItem(nullptr);
 	}
 }
 
@@ -68,6 +69,9 @@ void AItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	m_fRunningTime += DeltaTime;
-	//AddActorWorldRotation(FRotator(fTransformedSin(m_fRunningTime), 0.f, 0.f));
+	if (!m_bIsEquipped)
+	{
+		AddActorWorldOffset(FVector(0.f, 0.f, fTransformedSin(m_fRunningTime)));
+	}
 }
 

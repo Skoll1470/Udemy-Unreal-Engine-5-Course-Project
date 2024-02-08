@@ -11,6 +11,10 @@ class UDEMY_COURSE_PROJECT_API AWeapon : public AItem
 {
 	GENERATED_BODY()
 
+public:
+
+	void Equip(USceneComponent* in_Parent, FName in_SocketName);
+
 protected:
 
 	virtual void OnSphereOverlap(
@@ -22,5 +26,10 @@ protected:
 		const FHitResult& SweepResult) override;
 
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
+
+private:
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* m_pEquipSound = nullptr;
 	
 };

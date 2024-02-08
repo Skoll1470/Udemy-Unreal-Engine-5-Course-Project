@@ -58,14 +58,15 @@ protected:
 	UFUNCTION()
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	bool m_bIsEquipped = false;
+
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* SphereComponent = nullptr;
 private:
 	//The time since Item has been loaded
 	UPROPERTY(VisibleAnywhere, BlueprintreadOnly, meta = (AllowPrivateAccess = "true"));
 	float m_fRunningTime = 0.f;
 
-
-	UPROPERTY(VisibleAnywhere)
-	USphereComponent* SphereComponent = nullptr;
 };
 
 template<typename T>

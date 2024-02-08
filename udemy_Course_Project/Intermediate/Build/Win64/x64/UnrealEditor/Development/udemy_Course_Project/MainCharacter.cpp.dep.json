@@ -37,7 +37,11 @@
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementcomponentasync.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementcomponent.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\springarmcomponent.h",
-            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\springarmcomponent.generated.h"
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\springarmcomponent.generated.h",
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\item.h",
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\item.generated.h",
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\weapon.h",
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\weapon.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
