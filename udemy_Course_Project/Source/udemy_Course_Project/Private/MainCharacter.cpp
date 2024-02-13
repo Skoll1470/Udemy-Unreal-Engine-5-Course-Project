@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Item.h"
 #include "Weapon.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -57,6 +58,22 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 	else if (in_NotifyName.ToString() == "UnequippingEnd")
 	{
 		m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
+	}
+	else if (in_NotifyName.ToString() == "EnableCollision")
+	{
+		SetWeaponCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else if (in_NotifyName.ToString() == "DisableCollision")
+	{
+		SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+void AMainCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type in_CollisionEnabled)
+{
+	if (m_bIsEquipped && m_pEquippedWeapon->GetWeaponHitBox())
+	{
+		m_pEquippedWeapon->GetWeaponHitBox()->SetCollisionEnabled(in_CollisionEnabled);
 	}
 }
 

@@ -41,7 +41,11 @@
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\item.h",
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\item.generated.h",
             "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\source\\udemy_course_project\\public\\weapon.h",
-            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\weapon.generated.h"
+            "c:\\users\\thoma\\onedrive\\bureau\\work\\udemy-unreal-engine-5-course-project\\udemy_course_project\\intermediate\\build\\win64\\unrealeditor\\inc\\udemy_course_project\\uht\\weapon.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

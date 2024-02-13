@@ -51,6 +51,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool GetIsEquipped() const { return m_bIsEquipped; };
 
+
 protected:
 	//Rolling Animation Montage
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
@@ -89,6 +90,7 @@ protected:
 
 	void ResetCombo();
 
+	void SetWeaponCollisionEnabled(ECollisionEnabled::Type in_CollisionEnabled);
 
 private:
 	//Spring Arm Component
