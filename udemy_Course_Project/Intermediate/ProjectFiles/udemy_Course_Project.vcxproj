@@ -128,6 +128,11 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\Private\BreakableActor.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\..\Source\udemy_Course_Project\Private\Enemy.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -159,6 +164,7 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Bird.h"/>
+    <ClInclude Include="..\..\Source\udemy_Course_Project\Public\BreakableActor.h"/>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Enemy.h"/>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\HitInterface.h"/>
     <ClInclude Include="..\..\Source\udemy_Course_Project\Public\Item.h"/>

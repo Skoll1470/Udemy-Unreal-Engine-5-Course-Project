@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "udemy_Course_Project/DebugMacros.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -40,12 +41,31 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
-void AEnemy::GetHit(const FVector& in_ImpactPoint)
+void AEnemy::GetHit_Implementation(const FVector& in_ImpactPoint)
 {
 	UAnimInstance* pAnimInstace = GetMesh()->GetAnimInstance();
 	if (pAnimInstace && m_pHitReactMontage)
 	{
 		pAnimInstace->Montage_Play(m_pHitReactMontage);
+	}
+
+	const FVector vectForward = GetActorForwardVector();
+	const FVector vectImpactLowered = FVector(in_ImpactPoint.X, in_ImpactPoint.Y, GetActorLocation().Z);
+	const FVector vectToHit = (vectImpactLowered - GetActorLocation()).GetSafeNormal();
+	double dDotProduct = FVector::DotProduct(vectForward, vectToHit);
+	dDotProduct = FMath::Acos(dDotProduct);
+	dDotProduct = FMath::RadiansToDegrees(dDotProduct);
+	const FVector vectCrossProduct = FVector::CrossProduct(vectForward, vectToHit);
+	if (vectCrossProduct.Z < 0)
+	{
+		dDotProduct *= -1.f; 
+	}
+
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Green, FString::Printf(TEXT("Angle = %f"), dDotProduct));
+		UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + vectForward * 60.f, 5.f, FColor::Red, 5.f);
+		UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + vectToHit * 60.f, 5.f, FColor::Green, 5.f);
 	}
 }
 

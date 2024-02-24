@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 // Cross Module References
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
@@ -34,6 +35,17 @@ void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 		P_THIS->OnBoxOverlap(Z_Param_OverlappedComponent,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_SweepResult);
 		P_NATIVE_END;
 	}
+	struct Weapon_eventCreateFields_Parms
+	{
+		FVector in_vectFieldLocation;
+	};
+	static FName NAME_AWeapon_CreateFields = FName(TEXT("CreateFields"));
+	void AWeapon::CreateFields(FVector const& in_vectFieldLocation)
+	{
+		Weapon_eventCreateFields_Parms Parms;
+		Parms.in_vectFieldLocation=in_vectFieldLocation;
+		ProcessEvent(FindFunctionChecked(NAME_AWeapon_CreateFields),&Parms);
+	}
 	void AWeapon::StaticRegisterNativesAWeapon()
 	{
 		UClass* Class = AWeapon::StaticClass();
@@ -41,6 +53,44 @@ void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 			{ "OnBoxOverlap", &AWeapon::execOnBoxOverlap },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AWeapon_CreateFields_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_in_vectFieldLocation_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_in_vectFieldLocation;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeapon_CreateFields_Statics::NewProp_in_vectFieldLocation_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AWeapon_CreateFields_Statics::NewProp_in_vectFieldLocation = { "in_vectFieldLocation", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Weapon_eventCreateFields_Parms, in_vectFieldLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_CreateFields_Statics::NewProp_in_vectFieldLocation_MetaData), Z_Construct_UFunction_AWeapon_CreateFields_Statics::NewProp_in_vectFieldLocation_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeapon_CreateFields_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeapon_CreateFields_Statics::NewProp_in_vectFieldLocation,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeapon_CreateFields_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Weapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_CreateFields_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "CreateFields", nullptr, nullptr, Z_Construct_UFunction_AWeapon_CreateFields_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_CreateFields_Statics::PropPointers), sizeof(Weapon_eventCreateFields_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08C80800, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_CreateFields_Statics::Function_MetaDataParams), Z_Construct_UFunction_AWeapon_CreateFields_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_CreateFields_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Weapon_eventCreateFields_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_AWeapon_CreateFields()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_CreateFields_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AWeapon_OnBoxOverlap_Statics
 	{
@@ -163,6 +213,7 @@ void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AWeapon_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeapon_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AWeapon_CreateFields, "CreateFields" }, // 1779369987
 		{ &Z_Construct_UFunction_AWeapon_OnBoxOverlap, "OnBoxOverlap" }, // 3043325919
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AWeapon_Statics::FuncInfo) < 2048);
@@ -247,9 +298,9 @@ void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Weapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWeapon, AWeapon::StaticClass, TEXT("AWeapon"), &Z_Registration_Info_UClass_AWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWeapon), 318172786U) },
+		{ Z_Construct_UClass_AWeapon, AWeapon::StaticClass, TEXT("AWeapon"), &Z_Registration_Info_UClass_AWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWeapon), 78563514U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Weapon_h_2920107246(TEXT("/Script/udemy_Course_Project"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Weapon_h_2476102009(TEXT("/Script/udemy_Course_Project"),
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Weapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Weapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

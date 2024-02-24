@@ -14,6 +14,8 @@ class UDEMY_COURSE_PROJECT_API AWeapon : public AItem
 	GENERATED_BODY()
 
 public:
+	TArray<AActor*> m_arrActorsToIgnore;
+
 	AWeapon();
 
 	void Equip(USceneComponent* in_Parent, FName in_SocketName);
@@ -40,6 +42,9 @@ protected:
 		int32 OtherBodyIndex,
 		bool bFromSweep,
 		const FHitResult& SweepResult);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CreateFields(const FVector& in_vectFieldLocation);
 
 private:
 

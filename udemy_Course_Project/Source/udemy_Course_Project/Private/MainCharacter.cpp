@@ -74,6 +74,7 @@ void AMainCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type in_Collis
 	if (m_bIsEquipped && m_pEquippedWeapon->GetWeaponHitBox())
 	{
 		m_pEquippedWeapon->GetWeaponHitBox()->SetCollisionEnabled(in_CollisionEnabled);
+		m_pEquippedWeapon->m_arrActorsToIgnore.Empty();
 	}
 }
 
@@ -256,5 +257,3 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction(FName("Shield"), IE_Pressed, this, &AMainCharacter::Defend);
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 }
-
-
