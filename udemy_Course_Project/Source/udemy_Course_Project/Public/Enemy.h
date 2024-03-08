@@ -7,6 +7,16 @@
 #include "HitInterface.h"
 #include "Enemy.generated.h"
 
+class UAttributeComponent;
+class UHealthBarComponent;
+
+UENUM(BlueprintType)
+enum class EEnemyState : uint8
+{
+	EECS_Alive UMETA(DisplayName = "Alive"),
+	EECS_Dead UMETA(DisplayName = "Dead")
+};
+
 UCLASS()
 class UDEMY_COURSE_PROJECT_API AEnemy : public ACharacter, public IHitInterface
 {
@@ -28,8 +38,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 	UAnimMontage* m_pHitReactMontage = nullptr;
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;	
+
+	UPROPERTY(BlueprintReadWrite)
+	EEnemyState m_EnemyState = EEnemyState::EECS_Alive;
+private:
+	UPROPERTY(VisibleAnywhere)
+	UAttributeComponent* m_pAttributeComponent = nullptr;
+
+	UPROPERTY(VisibleAnywhere)
+	UHealthBarComponent* m_pHealthBarWidget = nullptr;
+
+	AActor* m_pCombatTarget = nullptr;
 
 };

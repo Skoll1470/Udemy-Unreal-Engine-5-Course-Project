@@ -24,8 +24,10 @@ AWeapon::AWeapon()
 	m_pEndBoxTrace->SetupAttachment(GetRootComponent());
 }
 
-void AWeapon::Equip(USceneComponent* in_Parent, FName in_SocketName)
+void AWeapon::Equip(USceneComponent* in_Parent, FName in_SocketName, AActor* in_NewOwner, APawn* in_NewInstigator)
 {
+	SetOwner(in_NewOwner);
+	SetInstigator(in_NewInstigator);
 	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
 	StaticMeshComponent->AttachToComponent(in_Parent, TransformRules, in_SocketName);
 	m_bIsEquipped = true;
@@ -90,7 +92,7 @@ void AWeapon::OnBoxOverlap(
 		ETraceTypeQuery::TraceTypeQuery1,
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::ForDuration,
+		EDrawDebugTrace::None,
 		BoxHit,
 		true);
 	AActor* HitActor = BoxHit.GetActor();
@@ -103,5 +105,12 @@ void AWeapon::OnBoxOverlap(
 		}
 		m_arrActorsToIgnore.AddUnique(HitActor);
 		CreateFields(BoxHit.ImpactPoint);
+		UGameplayStatics::ApplyDamage(
+			HitActor,
+			m_fDamage,
+			GetInstigator()->GetController(),
+			this,
+			UDamageType::StaticClass()
+		);
 	}
 }

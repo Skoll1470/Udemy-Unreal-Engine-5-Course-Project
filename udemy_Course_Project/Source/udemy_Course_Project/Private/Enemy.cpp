@@ -6,6 +6,9 @@
 #include "Components/CapsuleComponent.h"
 #include "udemy_Course_Project/DebugMacros.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "AttributeComponent.h"
+#include "Components/WidgetComponent.h"
+#include "HealthBarComponent.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -18,20 +21,65 @@ AEnemy::AEnemy()
 	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 	GetMesh()->SetGenerateOverlapEvents(true);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
+
+	m_pAttributeComponent = CreateDefaultSubobject<UAttributeComponent>(TEXT("Attributes"));
+	m_pHealthBarWidget = CreateDefaultSubobject<UHealthBarComponent>(TEXT("Health Bar"));
+	m_pHealthBarWidget->SetupAttachment(GetRootComponent());
+}
+
+float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	if (m_pAttributeComponent)
+	{
+		m_pAttributeComponent->ReceiveDamage(DamageAmount);
+
+		if (m_pHealthBarWidget)
+		{
+			m_pHealthBarWidget->SetPercent(m_pAttributeComponent->GetHealthPercent());
+			if (m_pAttributeComponent->GetHealthPercent() == 0.f)
+			{
+				UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+				if (pAnimInstance && m_pHitReactMontage)
+				{
+					pAnimInstance->Montage_Play(m_pHitReactMontage);
+					pAnimInstance->Montage_JumpToSection("DeathHeavy", m_pHitReactMontage);
+					m_EnemyState = EEnemyState::EECS_Dead;
+					GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+					SetLifeSpan(3.f);
+				}
+			}
+		}
+	}
+	m_pCombatTarget = EventInstigator->GetPawn();
+	return DamageAmount;
 }
 
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if (m_pHealthBarWidget)
+	{
+		m_pHealthBarWidget->SetVisibility(false);
+	}
 }
 
 // Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (m_pCombatTarget)
+	{
+		const double dDistanceToTarget = (m_pCombatTarget->GetActorLocation() - GetActorLocation()).Size();
+		if (dDistanceToTarget > 500.f)
+		{
+			m_pCombatTarget = nullptr;
+			if (m_pHealthBarWidget)
+			{
+				m_pHealthBarWidget->SetVisibility(false);
+			}
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -43,29 +91,14 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AEnemy::GetHit_Implementation(const FVector& in_ImpactPoint)
 {
-	UAnimInstance* pAnimInstace = GetMesh()->GetAnimInstance();
-	if (pAnimInstace && m_pHitReactMontage)
+	if (m_pHealthBarWidget)
 	{
-		pAnimInstace->Montage_Play(m_pHitReactMontage);
+		m_pHealthBarWidget->SetVisibility(true);
 	}
-
-	const FVector vectForward = GetActorForwardVector();
-	const FVector vectImpactLowered = FVector(in_ImpactPoint.X, in_ImpactPoint.Y, GetActorLocation().Z);
-	const FVector vectToHit = (vectImpactLowered - GetActorLocation()).GetSafeNormal();
-	double dDotProduct = FVector::DotProduct(vectForward, vectToHit);
-	dDotProduct = FMath::Acos(dDotProduct);
-	dDotProduct = FMath::RadiansToDegrees(dDotProduct);
-	const FVector vectCrossProduct = FVector::CrossProduct(vectForward, vectToHit);
-	if (vectCrossProduct.Z < 0)
+	UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+	if (pAnimInstance && m_pHitReactMontage)
 	{
-		dDotProduct *= -1.f; 
-	}
-
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Green, FString::Printf(TEXT("Angle = %f"), dDotProduct));
-		UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + vectForward * 60.f, 5.f, FColor::Red, 5.f);
-		UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + vectToHit * 60.f, 5.f, FColor::Green, 5.f);
+		pAnimInstance->Montage_Play(m_pHitReactMontage);
 	}
 }
 
