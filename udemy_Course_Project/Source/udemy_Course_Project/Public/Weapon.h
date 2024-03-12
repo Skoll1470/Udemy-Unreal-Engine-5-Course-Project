@@ -18,7 +18,7 @@ public:
 
 	AWeapon();
 
-	void Equip(USceneComponent* in_Parent, FName in_SocketName, AActor* in_NewOwner, APawn* in_NewInstigator);
+	void Equip(USceneComponent* in_Parent, FName in_SocketName);
 
 	FORCEINLINE UBoxComponent* GetWeaponHitBox() const { return m_pHitBox; };
 
@@ -59,8 +59,5 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* m_pEndBoxTrace = nullptr;
-
-	UPROPERTY(EditAnywhere)
-	float m_fDamage = 20.0f;
 	
 };

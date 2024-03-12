@@ -52,7 +52,7 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 	{
 		if (m_pEquippedWeapon)
 		{
-			m_pEquippedWeapon->Equip(GetMesh(), FName("spineSocket"), this, this);
+			m_pEquippedWeapon->Equip(GetMesh(), FName("spineSocket"));
 		}
 	}
 	else if (in_NotifyName.ToString() == "UnequippingEnd")
@@ -164,7 +164,7 @@ void AMainCharacter::Interaction()
 		AWeapon* OverlappingWeapon = Cast<AWeapon>(m_pOverlappingItem);
 		if (OverlappingWeapon)
 		{
-			OverlappingWeapon->Equip(GetMesh(), FName("hand_rSocket"), this, this);
+			OverlappingWeapon->Equip(GetMesh(), FName("hand_rSocket"));
 			m_pEquippedWeapon = OverlappingWeapon;
 			m_pOverlappingItem = nullptr;
 			m_bIsEquipped = true;
@@ -177,7 +177,7 @@ void AMainCharacter::Interaction()
 		{
 			if (!m_bIsEquipped && m_pEquippedWeapon)
 			{
-				m_pEquippedWeapon->Equip(GetMesh(), FName("hand_rSocket"), this, this);
+				m_pEquippedWeapon->Equip(GetMesh(), FName("hand_rSocket"));
 				m_bIsEquipped = true;
 			}
 			m_intComboCounter++;
