@@ -9,6 +9,7 @@
 #include "AttributeComponent.h"
 #include "Components/WidgetComponent.h"
 #include "HealthBarComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -25,6 +26,11 @@ AEnemy::AEnemy()
 	m_pAttributeComponent = CreateDefaultSubobject<UAttributeComponent>(TEXT("Attributes"));
 	m_pHealthBarWidget = CreateDefaultSubobject<UHealthBarComponent>(TEXT("Health Bar"));
 	m_pHealthBarWidget->SetupAttachment(GetRootComponent());
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll = false;
+	bUseControllerRotationYaw = false;
 }
 
 float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
