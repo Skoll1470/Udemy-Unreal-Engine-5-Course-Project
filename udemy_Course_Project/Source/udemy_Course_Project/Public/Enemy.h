@@ -45,6 +45,12 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	EEnemyState m_EnemyState = EEnemyState::EECS_Alive;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Navigation")
+	AActor* m_pCurrentPatrolTarget = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Navigation")
+	TArray<AActor*> m_tabPatrolTargets;
 private:
 	UPROPERTY(VisibleAnywhere)
 	UAttributeComponent* m_pAttributeComponent = nullptr;
