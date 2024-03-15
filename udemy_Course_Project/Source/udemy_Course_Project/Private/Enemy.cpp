@@ -38,9 +38,11 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 	if (m_pAttributeComponent)
 	{
 		m_pAttributeComponent->ReceiveDamage(DamageAmount);
-
 		if (m_pHealthBarWidget)
 		{
+			m_pCombatTarget = EventInstigator->GetPawn();
+			m_EnemyState = EEnemyState::EECS_Chase;
+			GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 			m_pHealthBarWidget->SetPercent(m_pAttributeComponent->GetHealthPercent());
 			if (m_pAttributeComponent->GetHealthPercent() == 0.f)
 			{
@@ -56,8 +58,19 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 			}
 		}
 	}
-	m_pCombatTarget = EventInstigator->GetPawn();
 	return DamageAmount;
+}
+
+void AEnemy::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad)
+{
+	if (in_NotifyName == "AttackEnd")
+	{
+		if (m_EnemyState != EEnemyState::EECS_Dead)
+		{
+			m_EnemyState = EEnemyState::EECS_Chase;
+			UE_LOG(LogTemp, Warning, TEXT("Finished Attacking !"));
+		}
+	}
 }
 
 // Called when the game starts or when spawned
@@ -68,22 +81,79 @@ void AEnemy::BeginPlay()
 	{
 		m_pHealthBarWidget->SetVisibility(false);
 	}
+	ChooseRandomPatrolTarget();
+	GetCharacterMovement()->MaxWalkSpeed = 100.0f;
+	m_EnemyState = EEnemyState::EECS_Patrol;
+	UAnimInstance* pAnimInst = GetMesh()->GetAnimInstance();
+	if (pAnimInst)
+	{
+		pAnimInst->OnPlayMontageNotifyBegin.AddDynamic(this, &AEnemy::HandleOnMontageNotifyBegin);
+	}
+}
+
+bool AEnemy::InRange(AActor* in_pTarget, const double in_dRadius)
+{
+	const double dDistanceToTarget = (in_pTarget->GetActorLocation() - GetActorLocation()).Size();
+	return dDistanceToTarget <= in_dRadius;
+}
+
+void AEnemy::PatrolTimerFinished()
+{
+	ChooseRandomPatrolTarget();
+}
+
+void AEnemy::ChooseRandomPatrolTarget()
+{
+	if (m_tabPatrolTargets.Num() > 0)
+	{
+		TArray<AActor*> tabValidTargets;
+		for (auto Actor : m_tabPatrolTargets)
+		{
+			if (Actor != m_pPreviousPatrolTarget)
+			{
+				tabValidTargets.AddUnique(Actor);
+			}
+		}
+		const int32 iValidTargetsSize = tabValidTargets.Num();
+		const int32 iRandomTarget = FMath::RandRange(0, iValidTargetsSize - 1);
+		m_pCurrentPatrolTarget = tabValidTargets[iRandomTarget];
+		m_pPreviousPatrolTarget = tabValidTargets[iRandomTarget];
+	}
 }
 
 // Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (m_EnemyState == EEnemyState::EECS_Dead) return;
 	if (m_pCombatTarget)
 	{
-		const double dDistanceToTarget = (m_pCombatTarget->GetActorLocation() - GetActorLocation()).Size();
-		if (dDistanceToTarget > 500.f)
+		if (!InRange(m_pCombatTarget, 1000.0f))
 		{
 			m_pCombatTarget = nullptr;
 			if (m_pHealthBarWidget)
 			{
 				m_pHealthBarWidget->SetVisibility(false);
 			}
+			m_EnemyState = EEnemyState::EECS_Patrol;
+		}
+		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Attack)
+		{
+			m_EnemyState = EEnemyState::EECS_Attack;
+			UE_LOG(LogTemp, Warning, TEXT("Attacking !"));
+			UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+			if (pAnimInstance && m_pAttackMontage)
+			{
+				pAnimInstance->Montage_Play(m_pAttackMontage);
+			}
+		}
+	}
+	if (m_pCurrentPatrolTarget)
+	{
+		if (InRange(m_pCurrentPatrolTarget, 200.0f))
+		{
+			m_pCurrentPatrolTarget = nullptr;
+			GetWorldTimerManager().SetTimer(m_PatrolTimer, this, &AEnemy::PatrolTimerFinished, 2.f);
 		}
 	}
 }
