@@ -21,8 +21,6 @@ struct FBranchingPointNotifyPayload;
 #define FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGetIsEquipped); \
-	DECLARE_FUNCTION(execGetIsAttacking); \
-	DECLARE_FUNCTION(execGetIsRolling); \
 	DECLARE_FUNCTION(execHandleOnMontageNotifyBegin);
 
 
@@ -32,7 +30,7 @@ private: \
 	static void StaticRegisterNativesAMainCharacter(); \
 	friend struct Z_Construct_UClass_AMainCharacter_Statics; \
 public: \
-	DECLARE_CLASS(AMainCharacter, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/udemy_Course_Project"), NO_API) \
+	DECLARE_CLASS(AMainCharacter, ABaseCharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/udemy_Course_Project"), NO_API) \
 	DECLARE_SERIALIZER(AMainCharacter)
 
 

@@ -10,11 +10,11 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 // Cross Module References
-	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FBranchingPointNotifyPayload();
+	UDEMY_COURSE_PROJECT_API UClass* Z_Construct_UClass_ABaseCharacter();
 	UDEMY_COURSE_PROJECT_API UClass* Z_Construct_UClass_AItem_NoRegister();
 	UDEMY_COURSE_PROJECT_API UClass* Z_Construct_UClass_AMainCharacter();
 	UDEMY_COURSE_PROJECT_API UClass* Z_Construct_UClass_AMainCharacter_NoRegister();
@@ -89,20 +89,6 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		*(bool*)Z_Param__Result=P_THIS->GetIsEquipped();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(AMainCharacter::execGetIsAttacking)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->GetIsAttacking();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AMainCharacter::execGetIsRolling)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->GetIsRolling();
-		P_NATIVE_END;
-	}
 	DEFINE_FUNCTION(AMainCharacter::execHandleOnMontageNotifyBegin)
 	{
 		P_GET_PROPERTY(FNameProperty,Z_Param_in_NotifyName);
@@ -116,57 +102,10 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 	{
 		UClass* Class = AMainCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
-			{ "GetIsAttacking", &AMainCharacter::execGetIsAttacking },
 			{ "GetIsEquipped", &AMainCharacter::execGetIsEquipped },
-			{ "GetIsRolling", &AMainCharacter::execGetIsRolling },
 			{ "HandleOnMontageNotifyBegin", &AMainCharacter::execHandleOnMontageNotifyBegin },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
-	}
-	struct Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics
-	{
-		struct MainCharacter_eventGetIsAttacking_Parms
-		{
-			bool ReturnValue;
-		};
-		static void NewProp_ReturnValue_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	void Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::NewProp_ReturnValue_SetBit(void* Obj)
-	{
-		((MainCharacter_eventGetIsAttacking_Parms*)Obj)->ReturnValue = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(MainCharacter_eventGetIsAttacking_Parms), &Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Getter for m_bIsRolling\n" },
-#endif
-		{ "ModuleRelativePath", "Public/MainCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Getter for m_bIsRolling" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter, nullptr, "GetIsAttacking", nullptr, nullptr, Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::MainCharacter_eventGetIsAttacking_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::MainCharacter_eventGetIsAttacking_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_AMainCharacter_GetIsAttacking()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_GetIsAttacking_Statics::FuncParams);
-		}
-		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AMainCharacter_GetIsEquipped_Statics
 	{
@@ -204,51 +143,6 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_GetIsEquipped_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics
-	{
-		struct MainCharacter_eventGetIsRolling_Parms
-		{
-			bool ReturnValue;
-		};
-		static void NewProp_ReturnValue_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	void Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::NewProp_ReturnValue_SetBit(void* Obj)
-	{
-		((MainCharacter_eventGetIsRolling_Parms*)Obj)->ReturnValue = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(MainCharacter_eventGetIsRolling_Parms), &Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Getter for m_bIsRolling\n" },
-#endif
-		{ "ModuleRelativePath", "Public/MainCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Getter for m_bIsRolling" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter, nullptr, "GetIsRolling", nullptr, nullptr, Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::MainCharacter_eventGetIsRolling_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::MainCharacter_eventGetIsRolling_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_AMainCharacter_GetIsRolling()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_GetIsRolling_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -315,10 +209,6 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_m_pRollMontage;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_m_pAttackMontage_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_m_pAttackMontage;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_m_pEquipMontage_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_m_pEquipMontage;
@@ -339,14 +229,12 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_AMainCharacter_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_ACharacter,
+		(UObject* (*)())Z_Construct_UClass_ABaseCharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_udemy_Course_Project,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_AMainCharacter_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AMainCharacter_GetIsAttacking, "GetIsAttacking" }, // 2548887010
 		{ &Z_Construct_UFunction_AMainCharacter_GetIsEquipped, "GetIsEquipped" }, // 3174780642
-		{ &Z_Construct_UFunction_AMainCharacter_GetIsRolling, "GetIsRolling" }, // 3741424232
 		{ &Z_Construct_UFunction_AMainCharacter_HandleOnMontageNotifyBegin, "HandleOnMontageNotifyBegin" }, // 33791543
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Statics::FuncInfo) < 2048);
@@ -370,19 +258,6 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pRollMontage = { "m_pRollMontage", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter, m_pRollMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pRollMontage_MetaData), Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pRollMontage_MetaData) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pAttackMontage_MetaData[] = {
-		{ "Category", "Animation" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Attacking Animation Montage\n" },
-#endif
-		{ "ModuleRelativePath", "Public/MainCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Attacking Animation Montage" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pAttackMontage = { "m_pAttackMontage", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter, m_pAttackMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pAttackMontage_MetaData), Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pAttackMontage_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pEquipMontage_MetaData[] = {
 		{ "Category", "Animation" },
@@ -433,7 +308,6 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pOverlappingItem = { "m_pOverlappingItem", nullptr, (EPropertyFlags)0x0040000000020801, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter, m_pOverlappingItem), Z_Construct_UClass_AItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pOverlappingItem_MetaData), Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pOverlappingItem_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pRollMontage,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pAttackMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_pEquipMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_SpringArmComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Statics::NewProp_m_CameraComponent,
@@ -481,9 +355,9 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		{ EMainCharacterStates_StaticEnum, TEXT("EMainCharacterStates"), &Z_Registration_Info_UEnum_EMainCharacterStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3372521730U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter, AMainCharacter::StaticClass, TEXT("AMainCharacter"), &Z_Registration_Info_UClass_AMainCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter), 4101753340U) },
+		{ Z_Construct_UClass_AMainCharacter, AMainCharacter::StaticClass, TEXT("AMainCharacter"), &Z_Registration_Info_UClass_AMainCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter), 2454026226U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_565020014(TEXT("/Script/udemy_Course_Project"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_1204791946(TEXT("/Script/udemy_Course_Project"),
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::EnumInfo));

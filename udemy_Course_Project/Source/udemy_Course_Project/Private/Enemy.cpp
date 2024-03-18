@@ -10,6 +10,7 @@
 #include "Components/WidgetComponent.h"
 #include "HealthBarComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Weapon.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -23,7 +24,6 @@ AEnemy::AEnemy()
 	GetMesh()->SetGenerateOverlapEvents(true);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 
-	m_pAttributeComponent = CreateDefaultSubobject<UAttributeComponent>(TEXT("Attributes"));
 	m_pHealthBarWidget = CreateDefaultSubobject<UHealthBarComponent>(TEXT("Health Bar"));
 	m_pHealthBarWidget->SetupAttachment(GetRootComponent());
 
@@ -89,6 +89,14 @@ void AEnemy::BeginPlay()
 	{
 		pAnimInst->OnPlayMontageNotifyBegin.AddDynamic(this, &AEnemy::HandleOnMontageNotifyBegin);
 	}
+
+	UWorld* pWorld = GetWorld();
+	if (pWorld && WeaponClass)
+	{
+		AWeapon* pWeapon = pWorld->SpawnActor<AWeapon>(WeaponClass);
+		pWeapon->Equip(GetMesh(), FName("Weapon_H"), this, this);
+		m_pEquippedWeapon = pWeapon;
+	}
 }
 
 bool AEnemy::InRange(AActor* in_pTarget, const double in_dRadius)
@@ -140,12 +148,7 @@ void AEnemy::Tick(float DeltaTime)
 		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Attack)
 		{
 			m_EnemyState = EEnemyState::EECS_Attack;
-			UE_LOG(LogTemp, Warning, TEXT("Attacking !"));
-			UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
-			if (pAnimInstance && m_pAttackMontage)
-			{
-				pAnimInstance->Montage_Play(m_pAttackMontage);
-			}
+			PlayAttackMontage();
 		}
 	}
 	if (m_pCurrentPatrolTarget)
@@ -171,10 +174,6 @@ void AEnemy::GetHit_Implementation(const FVector& in_ImpactPoint)
 	{
 		m_pHealthBarWidget->SetVisibility(true);
 	}
-	UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
-	if (pAnimInstance && m_pHitReactMontage)
-	{
-		pAnimInstance->Montage_Play(m_pHitReactMontage);
-	}
+	PlayHitReactMontage();
 }
 

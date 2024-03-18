@@ -3,11 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "HitInterface.h"
+#include "BaseCharacter.h"
 #include "Enemy.generated.h"
 
-class UAttributeComponent;
 class UHealthBarComponent;
 
 UENUM(BlueprintType)
@@ -20,7 +18,7 @@ enum class EEnemyState : uint8
 };
 
 UCLASS()
-class UDEMY_COURSE_PROJECT_API AEnemy : public ACharacter, public IHitInterface
+class UDEMY_COURSE_PROJECT_API AEnemy : public ABaseCharacter
 {
 	GENERATED_BODY()
 
@@ -35,14 +33,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void GetHit_Implementation(const FVector& in_ImpactPoint) override;
-
-	//Hit Reaction Animation Montage
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
-	UAnimMontage* m_pHitReactMontage = nullptr;
-
-	//Attacking Animation Montage
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
-	UAnimMontage* m_pAttackMontage = nullptr;
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
@@ -66,8 +56,6 @@ protected:
 	AActor* m_pCombatTarget = nullptr;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-	UAttributeComponent* m_pAttributeComponent = nullptr;
 
 	UPROPERTY(VisibleAnywhere)
 	UHealthBarComponent* m_pHealthBarWidget = nullptr;
@@ -80,5 +68,8 @@ private:
 	void ChooseRandomPatrolTarget();
 
 	AActor* m_pPreviousPatrolTarget = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class AWeapon> WeaponClass;
 
 };

@@ -7,7 +7,6 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Item.h"
 #include "Weapon.h"
-#include "Components/BoxComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -66,15 +65,6 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 	else if (in_NotifyName.ToString() == "DisableCollision")
 	{
 		SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
-	}
-}
-
-void AMainCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type in_CollisionEnabled)
-{
-	if (m_bIsEquipped && m_pEquippedWeapon->GetWeaponHitBox())
-	{
-		m_pEquippedWeapon->GetWeaponHitBox()->SetCollisionEnabled(in_CollisionEnabled);
-		m_pEquippedWeapon->m_arrActorsToIgnore.Empty();
 	}
 }
 
@@ -181,35 +171,30 @@ void AMainCharacter::Interaction()
 				m_bIsEquipped = true;
 			}
 			m_intComboCounter++;
-			UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
-			if (pAnimInstance && m_pAttackMontage)
+			m_enumState = EMainCharacterStates::EMCS_Attacking;
+			FName MontageSectionName = FName();
+			switch (m_intComboCounter)
 			{
-				m_enumState = EMainCharacterStates::EMCS_Attacking;
-				pAnimInstance->Montage_Play(m_pAttackMontage);
-				FName MontageSectionName = FName();
-				switch (m_intComboCounter)
-				{
-				case 1 :
-					MontageSectionName = FName("Combo1");
-					break;
-				case 2:
-					MontageSectionName = FName("Combo1-1");
-					break;
-				case 3:
-					MontageSectionName = FName("Combo2");
-					break;
-				case 4:
-					MontageSectionName = FName("Combo3");
-					break;
-				case 5:
-					MontageSectionName = FName("Combo4");
-					break;
-				case 6:
-					MontageSectionName = FName("Combo5");
-					break;
-				}
-				pAnimInstance->Montage_JumpToSection(MontageSectionName, m_pAttackMontage);
+			case 1:
+				MontageSectionName = FName("Combo1");
+				break;
+			case 2:
+				MontageSectionName = FName("Combo1-1");
+				break;
+			case 3:
+				MontageSectionName = FName("Combo2");
+				break;
+			case 4:
+				MontageSectionName = FName("Combo3");
+				break;
+			case 5:
+				MontageSectionName = FName("Combo4");
+				break;
+			case 6:
+				MontageSectionName = FName("Combo5");
+				break;
 			}
+			PlayAttackMontage(MontageSectionName);
 		}
 	}
 }

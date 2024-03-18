@@ -3,13 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "BaseCharacter.h"
 #include "MainCharacter.generated.h"
+
 
 class USpringArmComponent;
 class UCameraComponent;
 class AItem;
-class AWeapon;
 
 UENUM(BlueprintType)
 enum class EMainCharacterStates : uint8
@@ -21,7 +21,7 @@ enum class EMainCharacterStates : uint8
 };
 
 UCLASS()
-class UDEMY_COURSE_PROJECT_API AMainCharacter : public ACharacter
+class UDEMY_COURSE_PROJECT_API AMainCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 
@@ -40,26 +40,13 @@ public:
 
 	FORCEINLINE void SetOverlappingItem(AItem* in_Item) { m_pOverlappingItem = in_Item; };
 
-	//Getter for m_bIsRolling
-	UFUNCTION(BlueprintCallable)
-	FORCEINLINE bool GetIsRolling() const { return m_bIsRolling; };
-
-	//Getter for m_bIsRolling
-	UFUNCTION(BlueprintCallable)
-	FORCEINLINE bool GetIsAttacking() const { return m_bIsAttacking; };
-
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool GetIsEquipped() const { return m_bIsEquipped; };
-
 
 protected:
 	//Rolling Animation Montage
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 	UAnimMontage* m_pRollMontage = nullptr;
-
-	//Attacking Animation Montage
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
-	UAnimMontage* m_pAttackMontage = nullptr;
 
 	//Attacking Animation Montage
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
@@ -90,7 +77,6 @@ protected:
 
 	void ResetCombo();
 
-	void SetWeaponCollisionEnabled(ECollisionEnabled::Type in_CollisionEnabled);
 
 private:
 	//Spring Arm Component
@@ -101,17 +87,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* m_CameraComponent = nullptr;
 
-	//Boolean indicating if the Main Character is Rolling
-	bool m_bIsRolling = false;
-
 	bool m_bIsEquipped = false;
-
-	bool m_bIsAttacking = false;
 
 	UPROPERTY(VisibleInstanceOnly)
 	AItem* m_pOverlappingItem = nullptr;
-
-	AWeapon* m_pEquippedWeapon = nullptr;
 
 	EMainCharacterStates m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
 
