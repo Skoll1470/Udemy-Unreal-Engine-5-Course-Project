@@ -72,6 +72,11 @@ void AWeapon::OnBoxOverlap(
 	bool bFromSweep, 
 	const FHitResult& SweepResult)
 {
+	if (GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")))
+	{
+		return;
+	}
+
 	const FVector vectStart = m_pStartBoxTrace->GetComponentLocation();
 	const FVector vectEnd = m_pEndBoxTrace->GetComponentLocation();
 	TArray<AActor*> ActorsToIgnore;
@@ -98,6 +103,10 @@ void AWeapon::OnBoxOverlap(
 	AActor* HitActor = BoxHit.GetActor();
 	if (HitActor)
 	{
+		if (GetOwner()->ActorHasTag(FName("Enemy")) && HitActor->ActorHasTag(FName("Enemy")))
+		{
+			return;
+		}
 		IHitInterface* HitInterface = Cast<IHitInterface>(HitActor);
 		if (HitInterface)
 		{

@@ -14,6 +14,7 @@ enum class EEnemyState : uint8
 	EECS_Patrol UMETA(DisplayName = "Patrolling"),
 	EECS_Chase UMETA(DisplayName = "Chasing"),
 	EECS_Attack UMETA(DisplayName = "Attacking"),
+	EECS_Engaged UMETA(DisplayName = "Engaged"),
 	EECS_Dead UMETA(DisplayName = "Dead")
 };
 
@@ -38,6 +39,8 @@ public:
 
 	UFUNCTION()
 	void HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad);
+
+	virtual void Destroyed() override;
 
 protected:
 	// Called when the game starts or when spawned
@@ -71,5 +74,13 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AWeapon> WeaponClass;
+
+	void ShowHealthBar(bool in_bShowHealthBar);
+
+	void ChangeToPatrolState();
+
+	FTimerHandle AttackTimer;
+
+	void AttackTimerEnd();
 
 };

@@ -122,4 +122,7 @@
       <Filter>Source\udemy_Course_Project\Public</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\udemy_Course_Project\Public\BaseCharacter.cpp" />
+  </ItemGroup>
 </Project>

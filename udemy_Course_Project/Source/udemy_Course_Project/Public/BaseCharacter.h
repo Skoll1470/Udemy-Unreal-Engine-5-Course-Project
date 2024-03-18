@@ -16,6 +16,7 @@ class UDEMY_COURSE_PROJECT_API ABaseCharacter : public ACharacter, public IHitIn
 	GENERATED_BODY()
 
 public:
+
 	// Sets default values for this character's properties
 	ABaseCharacter();
 

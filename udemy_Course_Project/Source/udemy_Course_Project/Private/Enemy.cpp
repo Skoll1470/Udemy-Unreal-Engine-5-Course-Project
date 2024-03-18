@@ -41,8 +41,6 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 		if (m_pHealthBarWidget)
 		{
 			m_pCombatTarget = EventInstigator->GetPawn();
-			m_EnemyState = EEnemyState::EECS_Chase;
-			GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 			m_pHealthBarWidget->SetPercent(m_pAttributeComponent->GetHealthPercent());
 			if (m_pAttributeComponent->GetHealthPercent() == 0.f)
 			{
@@ -68,8 +66,24 @@ void AEnemy::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPoi
 		if (m_EnemyState != EEnemyState::EECS_Dead)
 		{
 			m_EnemyState = EEnemyState::EECS_Chase;
-			UE_LOG(LogTemp, Warning, TEXT("Finished Attacking !"));
+			GetWorldTimerManager().SetTimer(AttackTimer, this, &AEnemy::AttackTimerEnd, 1.f);
 		}
+	}
+	else if (in_NotifyName.ToString() == "EnableCollision")
+	{
+		SetWeaponCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else if (in_NotifyName.ToString() == "DisableCollision")
+	{
+		SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+void AEnemy::Destroyed()
+{
+	if (m_pEquippedWeapon)
+	{
+		m_pEquippedWeapon->Destroy(); 
 	}
 }
 
@@ -77,13 +91,9 @@ void AEnemy::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPoi
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	if (m_pHealthBarWidget)
-	{
-		m_pHealthBarWidget->SetVisibility(false);
-	}
+	ShowHealthBar(false);
 	ChooseRandomPatrolTarget();
-	GetCharacterMovement()->MaxWalkSpeed = 100.0f;
-	m_EnemyState = EEnemyState::EECS_Patrol;
+	ChangeToPatrolState();
 	UAnimInstance* pAnimInst = GetMesh()->GetAnimInstance();
 	if (pAnimInst)
 	{
@@ -97,6 +107,8 @@ void AEnemy::BeginPlay()
 		pWeapon->Equip(GetMesh(), FName("Weapon_H"), this, this);
 		m_pEquippedWeapon = pWeapon;
 	}
+
+	Tags.Add(FName("Enemy"));
 }
 
 bool AEnemy::InRange(AActor* in_pTarget, const double in_dRadius)
@@ -129,6 +141,28 @@ void AEnemy::ChooseRandomPatrolTarget()
 	}
 }
 
+void AEnemy::ShowHealthBar(bool in_bShowHealthBar)
+{
+	if (m_pHealthBarWidget)
+	{
+		m_pHealthBarWidget->SetVisibility(in_bShowHealthBar);
+	}
+}
+
+void AEnemy::ChangeToPatrolState()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 100.0f;
+	m_EnemyState = EEnemyState::EECS_Patrol;
+}
+
+void AEnemy::AttackTimerEnd()
+{
+	if (m_EnemyState != EEnemyState::EECS_Dead)
+	{
+		m_EnemyState = EEnemyState::EECS_Chase;
+	}
+}
+
 // Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
@@ -136,16 +170,13 @@ void AEnemy::Tick(float DeltaTime)
 	if (m_EnemyState == EEnemyState::EECS_Dead) return;
 	if (m_pCombatTarget)
 	{
-		if (!InRange(m_pCombatTarget, 1000.0f))
+		if (!InRange(m_pCombatTarget, 2000.0f))
 		{
 			m_pCombatTarget = nullptr;
-			if (m_pHealthBarWidget)
-			{
-				m_pHealthBarWidget->SetVisibility(false);
-			}
-			m_EnemyState = EEnemyState::EECS_Patrol;
+			ShowHealthBar(false);
+			ChangeToPatrolState();
 		}
-		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Attack)
+		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Engaged && m_EnemyState != EEnemyState::EECS_Attack)
 		{
 			m_EnemyState = EEnemyState::EECS_Attack;
 			PlayAttackMontage();
@@ -165,15 +196,13 @@ void AEnemy::Tick(float DeltaTime)
 void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void AEnemy::GetHit_Implementation(const FVector& in_ImpactPoint)
 {
-	if (m_pHealthBarWidget)
-	{
-		m_pHealthBarWidget->SetVisibility(true);
-	}
+	ShowHealthBar(true);
 	PlayHitReactMontage();
+	m_EnemyState = EEnemyState::EECS_Chase;
+	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 }
 

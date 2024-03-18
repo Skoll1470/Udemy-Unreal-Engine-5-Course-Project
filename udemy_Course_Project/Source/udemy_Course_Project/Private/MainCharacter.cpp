@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Item.h"
 #include "Weapon.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -27,6 +28,12 @@ AMainCharacter::AMainCharacter()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
+
+	GetMesh()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	GetMesh()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Overlap);
+	GetMesh()->SetGenerateOverlapEvents(true);
 }
 
 void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad)
@@ -68,6 +75,12 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 	}
 }
 
+void AMainCharacter::GetHit_Implementation(const FVector& in_ImpactPoint)
+{
+	PlayHitReactMontage();
+	UE_LOG(LogTemp, Warning, TEXT("Getting Hit!"));
+}
+
 // Called when the game starts or when spawned
 void AMainCharacter::BeginPlay()
 {
@@ -78,6 +91,8 @@ void AMainCharacter::BeginPlay()
 	{
 		pAnimInst->OnPlayMontageNotifyBegin.AddDynamic(this, &AMainCharacter::HandleOnMontageNotifyBegin);
 	}
+
+	Tags.Add(FName("MainCharacter"));
 }
 
 void AMainCharacter::MoveForward(float in_fValue)

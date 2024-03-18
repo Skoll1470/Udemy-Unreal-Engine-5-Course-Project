@@ -43,6 +43,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool GetIsEquipped() const { return m_bIsEquipped; };
 
+	virtual void GetHit_Implementation(const FVector& in_ImpactPoint) override;
+
 protected:
 	//Rolling Animation Montage
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
