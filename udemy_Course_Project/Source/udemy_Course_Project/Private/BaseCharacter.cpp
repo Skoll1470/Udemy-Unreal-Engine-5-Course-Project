@@ -1,3 +1,4 @@
+#include "BaseCharacter.h"
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
@@ -45,6 +46,11 @@ void ABaseCharacter::PlayHitReactMontage(const FName in_SectionName)
 			pAnimInstance->Montage_JumpToSection(in_SectionName, m_pHitReactMontage);
 		}
 	}
+}
+
+void ABaseCharacter::DirectionalHitReact(const FVector& in_vectImpactPoint)
+{
+
 }
 
 // Called every frame

@@ -70,7 +70,7 @@ template<> UDEMY_COURSE_PROJECT_API UClass* StaticClass<class AEnemy>();
 	op(EEnemyState::EECS_Patrol) \
 	op(EEnemyState::EECS_Chase) \
 	op(EEnemyState::EECS_Attack) \
-	op(EEnemyState::EECS_Engaged) \
+	op(EEnemyState::EECS_HitReact) \
 	op(EEnemyState::EECS_Dead) 
 
 enum class EEnemyState : uint8;

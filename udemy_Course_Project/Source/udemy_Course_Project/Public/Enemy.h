@@ -14,7 +14,7 @@ enum class EEnemyState : uint8
 	EECS_Patrol UMETA(DisplayName = "Patrolling"),
 	EECS_Chase UMETA(DisplayName = "Chasing"),
 	EECS_Attack UMETA(DisplayName = "Attacking"),
-	EECS_Engaged UMETA(DisplayName = "Engaged"),
+	EECS_HitReact UMETA(DisplayName = "HitReact"),
 	EECS_Dead UMETA(DisplayName = "Dead")
 };
 

@@ -46,6 +46,7 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		{ "EMainCharacterStates::EMCS_Unoccpuied", (int64)EMainCharacterStates::EMCS_Unoccpuied },
 		{ "EMainCharacterStates::EMCS_Rolling", (int64)EMainCharacterStates::EMCS_Rolling },
 		{ "EMainCharacterStates::EMCS_Attacking", (int64)EMainCharacterStates::EMCS_Attacking },
+		{ "EMainCharacterStates::EMCS_HitReact", (int64)EMainCharacterStates::EMCS_HitReact },
 		{ "EMainCharacterStates::EMC_Unequipping", (int64)EMainCharacterStates::EMC_Unequipping },
 	};
 #if WITH_METADATA
@@ -55,6 +56,8 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		{ "EMC_Unequipping.Name", "EMainCharacterStates::EMC_Unequipping" },
 		{ "EMCS_Attacking.DisplayName", "Rolling" },
 		{ "EMCS_Attacking.Name", "EMainCharacterStates::EMCS_Attacking" },
+		{ "EMCS_HitReact.DisplayName", "HitReact" },
+		{ "EMCS_HitReact.Name", "EMainCharacterStates::EMCS_HitReact" },
 		{ "EMCS_Rolling.DisplayName", "Attacking" },
 		{ "EMCS_Rolling.Name", "EMainCharacterStates::EMCS_Rolling" },
 		{ "EMCS_Unoccpuied.DisplayName", "Unoccupied" },
@@ -352,12 +355,12 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::EnumInfo[] = {
-		{ EMainCharacterStates_StaticEnum, TEXT("EMainCharacterStates"), &Z_Registration_Info_UEnum_EMainCharacterStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3372521730U) },
+		{ EMainCharacterStates_StaticEnum, TEXT("EMainCharacterStates"), &Z_Registration_Info_UEnum_EMainCharacterStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1877401986U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_AMainCharacter, AMainCharacter::StaticClass, TEXT("AMainCharacter"), &Z_Registration_Info_UClass_AMainCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter), 2454026226U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_1204791946(TEXT("/Script/udemy_Course_Project"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_2070262730(TEXT("/Script/udemy_Course_Project"),
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_MainCharacter_h_Statics::EnumInfo));

@@ -46,4 +46,6 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UAttributeComponent* m_pAttributeComponent = nullptr;
 
+	void DirectionalHitReact(const FVector& in_vectImpactPoint);
+
 };

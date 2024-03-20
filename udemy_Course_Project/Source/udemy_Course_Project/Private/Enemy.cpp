@@ -42,17 +42,13 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 		{
 			m_pCombatTarget = EventInstigator->GetPawn();
 			m_pHealthBarWidget->SetPercent(m_pAttributeComponent->GetHealthPercent());
-			if (m_pAttributeComponent->GetHealthPercent() == 0.f)
+			if (m_pAttributeComponent->GetHealthPercent() <= 0.f)
 			{
-				UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
-				if (pAnimInstance && m_pHitReactMontage)
-				{
-					pAnimInstance->Montage_Play(m_pHitReactMontage);
-					pAnimInstance->Montage_JumpToSection("DeathHeavy", m_pHitReactMontage);
-					m_EnemyState = EEnemyState::EECS_Dead;
-					GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-					SetLifeSpan(3.f);
-				}
+				PlayHitReactMontage("DeathHeavy");
+				m_EnemyState = EEnemyState::EECS_Dead;
+				GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+				SetLifeSpan(3.f);
 			}
 		}
 	}
@@ -61,7 +57,7 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 
 void AEnemy::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPointNotifyPayload& in_BranchingPayLoad)
 {
-	if (in_NotifyName == "AttackEnd")
+	if (in_NotifyName.ToString() == "AttackEnd")
 	{
 		if (m_EnemyState != EEnemyState::EECS_Dead)
 		{
@@ -76,6 +72,10 @@ void AEnemy::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBranchingPoi
 	else if (in_NotifyName.ToString() == "DisableCollision")
 	{
 		SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+	else if (in_NotifyName.ToString() == "HitReactEnd")
+	{
+		m_EnemyState = EEnemyState::EECS_Chase;
 	}
 }
 
@@ -168,7 +168,7 @@ void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (m_EnemyState == EEnemyState::EECS_Dead) return;
-	if (m_pCombatTarget)
+	if (m_pCombatTarget && m_EnemyState == EEnemyState::EECS_Chase)
 	{
 		if (!InRange(m_pCombatTarget, 2000.0f))
 		{
@@ -176,7 +176,7 @@ void AEnemy::Tick(float DeltaTime)
 			ShowHealthBar(false);
 			ChangeToPatrolState();
 		}
-		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Engaged && m_EnemyState != EEnemyState::EECS_Attack)
+		else if (InRange(m_pCombatTarget, 200.0f) && m_EnemyState != EEnemyState::EECS_Attack)
 		{
 			m_EnemyState = EEnemyState::EECS_Attack;
 			PlayAttackMontage();
@@ -202,7 +202,8 @@ void AEnemy::GetHit_Implementation(const FVector& in_ImpactPoint)
 {
 	ShowHealthBar(true);
 	PlayHitReactMontage();
-	m_EnemyState = EEnemyState::EECS_Chase;
+	m_EnemyState = EEnemyState::EECS_HitReact;
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+	GetWorldTimerManager().ClearTimer(m_PatrolTimer);
 }
 

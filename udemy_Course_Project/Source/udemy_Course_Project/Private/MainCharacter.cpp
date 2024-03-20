@@ -73,12 +73,19 @@ void AMainCharacter::HandleOnMontageNotifyBegin(FName in_NotifyName, const FBran
 	{
 		SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
+	else if (in_NotifyName.ToString() == "HitReactEnd")
+	{
+		m_enumState = EMainCharacterStates::EMCS_Unoccpuied;
+	}
 }
 
 void AMainCharacter::GetHit_Implementation(const FVector& in_ImpactPoint)
 {
+	m_enumState = EMainCharacterStates::EMCS_HitReact;
 	PlayHitReactMontage();
-	UE_LOG(LogTemp, Warning, TEXT("Getting Hit!"));
+	m_intComboCounter = 0;
+	GetWorldTimerManager().ClearTimer(m_THComboTimer);
+	SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 // Called when the game starts or when spawned

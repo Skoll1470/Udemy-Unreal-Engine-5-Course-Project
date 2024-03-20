@@ -72,7 +72,8 @@ void AWeapon::OnBoxOverlap(
 	bool bFromSweep, 
 	const FHitResult& SweepResult)
 {
-	if (GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")))
+	if ((GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")))
+		|| (GetOwner()->ActorHasTag(FName("MainCharacter")) && OtherActor->ActorHasTag(FName("MainCharacter"))))
 	{
 		return;
 	}
@@ -103,7 +104,8 @@ void AWeapon::OnBoxOverlap(
 	AActor* HitActor = BoxHit.GetActor();
 	if (HitActor)
 	{
-		if (GetOwner()->ActorHasTag(FName("Enemy")) && HitActor->ActorHasTag(FName("Enemy")))
+		if ((GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")))
+			|| (GetOwner()->ActorHasTag(FName("MainCharacter")) && OtherActor->ActorHasTag(FName("MainCharacter"))))
 		{
 			return;
 		}

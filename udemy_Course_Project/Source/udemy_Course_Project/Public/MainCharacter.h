@@ -17,6 +17,7 @@ enum class EMainCharacterStates : uint8
 	EMCS_Unoccpuied UMETA(DisplayName = "Unoccupied"),
 	EMCS_Rolling UMETA(DisplayName = "Attacking"),
 	EMCS_Attacking UMETA(DisplayName = "Rolling"),
+	EMCS_HitReact UMETA(DisplayName = "HitReact"),
 	EMC_Unequipping UMETA(DisplayName = "Unequipping")
 };
 

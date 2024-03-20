@@ -46,7 +46,7 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		{ "EEnemyState::EECS_Patrol", (int64)EEnemyState::EECS_Patrol },
 		{ "EEnemyState::EECS_Chase", (int64)EEnemyState::EECS_Chase },
 		{ "EEnemyState::EECS_Attack", (int64)EEnemyState::EECS_Attack },
-		{ "EEnemyState::EECS_Engaged", (int64)EEnemyState::EECS_Engaged },
+		{ "EEnemyState::EECS_HitReact", (int64)EEnemyState::EECS_HitReact },
 		{ "EEnemyState::EECS_Dead", (int64)EEnemyState::EECS_Dead },
 	};
 #if WITH_METADATA
@@ -58,8 +58,8 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		{ "EECS_Chase.Name", "EEnemyState::EECS_Chase" },
 		{ "EECS_Dead.DisplayName", "Dead" },
 		{ "EECS_Dead.Name", "EEnemyState::EECS_Dead" },
-		{ "EECS_Engaged.DisplayName", "Engaged" },
-		{ "EECS_Engaged.Name", "EEnemyState::EECS_Engaged" },
+		{ "EECS_HitReact.DisplayName", "HitReact" },
+		{ "EECS_HitReact.Name", "EEnemyState::EECS_HitReact" },
 		{ "EECS_Patrol.DisplayName", "Patrolling" },
 		{ "EECS_Patrol.Name", "EEnemyState::EECS_Patrol" },
 		{ "ModuleRelativePath", "Public/Enemy.h" },
@@ -213,7 +213,7 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		{ "ModuleRelativePath", "Public/Enemy.h" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState = { "m_EnemyState", nullptr, (EPropertyFlags)0x0020080000020005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, m_EnemyState), Z_Construct_UEnum_udemy_Course_Project_EEnemyState, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState_MetaData), Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState_MetaData) }; // 730541426
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState = { "m_EnemyState", nullptr, (EPropertyFlags)0x0020080000020005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, m_EnemyState), Z_Construct_UEnum_udemy_Course_Project_EEnemyState, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState_MetaData), Z_Construct_UClass_AEnemy_Statics::NewProp_m_EnemyState_MetaData) }; // 2240398931
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AEnemy_Statics::NewProp_m_pCurrentPatrolTarget_MetaData[] = {
 		{ "Category", "AI Navigation" },
@@ -300,12 +300,12 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::EnumInfo[] = {
-		{ EEnemyState_StaticEnum, TEXT("EEnemyState"), &Z_Registration_Info_UEnum_EEnemyState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 730541426U) },
+		{ EEnemyState_StaticEnum, TEXT("EEnemyState"), &Z_Registration_Info_UEnum_EEnemyState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2240398931U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 103678949U) },
+		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 1224571491U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_16060634(TEXT("/Script/udemy_Course_Project"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_571630357(TEXT("/Script/udemy_Course_Project"),
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thoma_OneDrive_Bureau_Work_Udemy_Unreal_Engine_5_Course_Project_udemy_Course_Project_Source_udemy_Course_Project_Public_Enemy_h_Statics::EnumInfo));
